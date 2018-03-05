@@ -8,14 +8,12 @@
 
 import UIKit
 
-class UIView_Extensions: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+// MARK: - UIView extension for constrains
+extension UIView {
+    func fillingContraints(for view: UIView) -> [NSLayoutConstraint] {
+        return [view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                view.topAnchor.constraint(equalTo: self.topAnchor),
+                view.bottomAnchor.constraint(equalTo: self.bottomAnchor)]
     }
-    */
-
 }

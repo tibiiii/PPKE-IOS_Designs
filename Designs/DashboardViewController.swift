@@ -8,6 +8,20 @@
 
 import UIKit
 
-class DashboardViewController: UITab {
+class DashboardViewController: UITabBarController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let discoverViewController = DiscoverViewController()
+        discoverViewController.tabBarItem = UITabBarItem(title: "Discover", image: nil, selectedImage: nil)
+        let designsViewController = DesignsViewController()
+        designsViewController.tabBarItem = UITabBarItem(title: "Designs", image: nil, selectedImage: nil)
+        let learnViewController = LearnViewController()
+        learnViewController.tabBarItem = UITabBarItem(title: "Learn", image: nil, selectedImage: nil)
+        viewControllers = [discoverViewController,
+                           designsViewController,
+                           learnViewController]
+        selectedIndex = 1
+    }
 }

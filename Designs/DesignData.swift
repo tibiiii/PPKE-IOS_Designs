@@ -8,6 +8,7 @@
 
 import UIKit
 
-class DesignData: UICollectionViewCell {
-    
+struct DesignData {
+    let name: String
+    let image: UIImage
 }
