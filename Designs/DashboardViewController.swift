@@ -23,5 +23,6 @@ class DashboardViewController: UITabBarController {
                            designsViewController,
                            learnViewController]
         selectedIndex = 1
+        tabBar.tintColor = UIColor.ppkeBlue
     }
 }
