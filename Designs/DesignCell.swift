@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DesignCellLongPressProtocol: NSObjectProtocol {
+    func longPressed(cell: DesignCell)
+}
+
 class DesignCell: DashboardCell {
     private struct Constants {
         struct Shadow {
@@ -41,6 +45,20 @@ class DesignCell: DashboardCell {
         }
     }
     
+    override var isSelected: Bool {
+        didSet {
+            contentView.layer.borderWidth = isSelected ? 1.0 : 0.0
+        }
+    }
+    
+    weak var longPressDelegate: DesignCellLongPressProtocol?
+    lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
+        let lpg = UILongPressGestureRecognizer()
+        lpg.addTarget(self, action: #selector(longPressed(_:)))
+        return lpg
+    }()
+
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -73,9 +91,18 @@ class DesignCell: DashboardCell {
         layer.shadowOpacity = Constants.Shadow.opacity
         layer.shadowOffset = Constants.Shadow.offset
         layer.shadowRadius = Constants.Shadow.radius
+        
+        contentView.layer.borderColor = UIColor.ppkeBlue.cgColor
+        
+        addGestureRecognizer(longPressGestureRecognizer)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Action
+    @objc private func longPressed(_ sender: Any) {
+        longPressDelegate?.longPressed(cell: self)
     }
 }
