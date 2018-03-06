@@ -8,9 +8,12 @@
 
 import UIKit
 
-class DesignsViewController: UIViewController {
+class DesignsViewController: UIViewController, UICollectionViewDataSource {
     private struct Constants {
         static let title: String = "Designs"
+        static let newDesignCellReuseId: String = "NewDesignCellId"
+        static let designCellReuseId: String = "DesignCellId"
+        static let contentInset: UIEdgeInsets = UIEdgeInsets(top: 120.0, left: 52.0, bottom: 0.0, right: 52.0)
     }
     
     let data: [DesignData] = [DesignData(name: "Design 0", image: #imageLiteral(resourceName: "designThumbnail0")),
@@ -32,6 +35,11 @@ class DesignsViewController: UIViewController {
         layout.itemSize = CGSize(width: 200.0, height: 200.0)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.gray
+        cv.register(NewDesignCell.self, forCellWithReuseIdentifier: Constants.newDesignCellReuseId)
+        cv.register(DesignCell.self, forCellWithReuseIdentifier: Constants.designCellReuseId)
+        cv.dataSource = self
+        cv.alwaysBounceVertical = true
+        cv.contentInset = Constants.contentInset
         return cv
     }()
 
@@ -61,6 +69,26 @@ class DesignsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }    
+    
+    // MARK: - UICollectionViewDataSource
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.isNewDesign {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.newDesignCellReuseId, for: indexPath)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.designCellReuseId, for: indexPath) as! DesignCell
+            cell.image = data[indexPath.row % data.count].image
+            return cell
+        }
+    }
 }
 
 extension IndexPath {

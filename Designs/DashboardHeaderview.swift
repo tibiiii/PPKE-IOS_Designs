@@ -10,12 +10,13 @@ import UIKit
 
 class DashboardHeaderview: UIView {
     private struct Constants {
-        static let titlePadding: CGPoint = CGPoint(x: 20.0, y: -20.0)
-        static let height: CGFloat = 200.0
+        static let titlePadding: CGPoint = CGPoint(x: 52.0, y: -42.0)
+        static let height: CGFloat = 120.0
     }
     
     let titleLabel: UILabel = {
         let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 40.0, weight: UIFont.Weight.bold)
         return l
     }()
     
