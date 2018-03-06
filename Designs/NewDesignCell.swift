@@ -1,5 +1,5 @@
 //
-//  NewDesingCell.swift
+//  NewDesignCell.swift
 //  Designs
 //
 //  Created by Tibi Kolozsi on 2018. 03. 05..
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class NewDesingCell: UICollectionViewCell {
+class NewDesignCell: UICollectionViewCell {
     
 }
