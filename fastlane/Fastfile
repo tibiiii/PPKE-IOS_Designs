@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   lane :custom_lane do
-  	scan()
+  	scan(build_for_testing: true)
     # add actions here: https://docs.fastlane.tools/actions
   end
 end
