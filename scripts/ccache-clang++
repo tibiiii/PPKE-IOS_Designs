@@ -1,0 +1,9 @@
+#!/bin/sh
+if type -p ccache >/dev/null 2>&1; then
+  export CCACHE_MAXSIZE=10G
+  export CCACHE_CPP2=true
+  export CCACHE_SLOPPINESS=pch_defines,time_macros
+  exec ccache /usr/bin/clang++ "$@"
+else
+  exec clang++ "$@"
+fi
