@@ -7,6 +7,67 @@
 //
 
 #include "Build.hpp"
+#include <stdio.h>
+
+template < int i >
+class  A
+{
+public:
+    int a;
+private:
+    A<i-1>   x;
+    A<i-2>   y;
+};
+
+template <> class A<0>
+{
+    char a;
+};
+
+template <> class A<1>
+{
+    char a;
+};
+
+template < int i >
+class  B
+{
+public:
+    int a;
+private:
+    B<i-1>   x;
+    B<i-2>   y;
+};
+
+template <> class B<0>
+{
+    char a;
+};
+
+template <> class B<1>
+{
+    char a;
+};
+
+template < int i >
+class  C
+{
+public:
+    int a;
+private:
+    C<i-1>   x;
+    C<i-2>   y;
+};
+
+template <> class C<0>
+{
+    char a;
+};
+
+template <> class C<1>
+{
+    char a;
+};
 
 template<bool V> struct answer { answer(int) {} bool operator()(){return V;}};
 
@@ -29,6 +90,7 @@ template<> struct func<answer<false>>{
 
 int foo(void)
 {
-    func<IsPrime<1223>>::typen<1>();
-    return 0;
+    A<100> a;
+    func<IsPrime<29>>::typen<1>();
+    return a.a;
 }
