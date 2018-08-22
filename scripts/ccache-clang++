@@ -9,5 +9,4 @@ if type -p ccache >/dev/null 2>&1; then
 
 else
 	echo "ccache not found"
-  exec clang++ "$@"
 fi
